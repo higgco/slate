@@ -1,5 +1,5 @@
 ---
-title: API Reference
+title: Higg Public API Beta Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -18,7 +18,7 @@ search: true
 
 # Introduction
 
-Welcome to the Higg Public API! You can use our API to access Higg Public API endpoints, which allows you to access module data that your account owns or that has been shared with your account.
+Welcome to the Higg Public API Beta! You can use our API to access Higg Public API endpoints, which allows you to access module data that your account owns or that has been shared with your account.
 
 We have language bindings in Shell (curl) and JavaScript. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
