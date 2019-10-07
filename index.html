@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;,&quot;javascript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -212,8 +212,6 @@
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
               <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
@@ -225,28 +223,61 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#available-apis" class="toc-h1 toc-link" data-title="Available APIs">Available APIs</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#bulk-csv-api" class="toc-h2 toc-link" data-title="Bulk CSV API">Bulk CSV API</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#module-data-api" class="toc-h2 toc-link" data-title="Module Data API">Module Data API</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#adoption-data-api" class="toc-h2 toc-link" data-title="Adoption Data API">Adoption Data API</a>
                   </li>
               </ul>
           </li>
           <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+          </li>
+          <li>
+            <a href="#bulk-csv-api-2" class="toc-h1 toc-link" data-title="Bulk CSV API">Bulk CSV API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-all-fem-module-data" class="toc-h2 toc-link" data-title="Get All FEM module data">Get All FEM module data</a>
+                  </li>
+                  <li>
+                    <a href="#get-all-fslm-module-data" class="toc-h2 toc-link" data-title="Get All FSLM module data">Get All FSLM module data</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#module-data-api-2" class="toc-h1 toc-link" data-title="Module Data API">Module Data API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-module-data" class="toc-h2 toc-link" data-title="Get Module Data">Get Module Data</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#adoption-data-api-2" class="toc-h1 toc-link" data-title="Adoption Data API">Adoption Data API</a>
+          </li>
+          <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+          </li>
+          <li>
+            <a href="#data-dictionary" class="toc-h1 toc-link" data-title="Data Dictionary">Data Dictionary</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#dictionary" class="toc-h2 toc-link" data-title="Dictionary">Dictionary</a>
+                  </li>
+                  <li>
+                    <a href="#applicabilities" class="toc-h2 toc-link" data-title="Applicabilities">Applicabilities</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='mailto:support@higg.com'>Contact Support for a Developer Key</a></li>
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
@@ -254,190 +285,706 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the Higg Public API! You can use our API to access Higg Public API endpoints, which allows you to access module data that your account owns or that has been shared with your account.</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>We have language bindings in Shell (curl) and JavaScript. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<p>There are currently 2 available APIs and one API in planning</p>
+<h1 id='available-apis'>Available APIs</h1><h2 id='bulk-csv-api'>Bulk CSV API</h2>
+<p>The Bulk CSV API allows you to programmatically retrieve all module data that you own and that has been shared with you. The output is a CSV data stream that exactly matches what is available in the web portal for bulk download. The intent of the Bulk CSV API is not real-time interactions, it is for full data export/import use cases. Since this request can be 10&#39;s or 100&#39;s of megabytes in size, it is not useful for realtime interactions. </p>
+
+<p>This API uses cached data that is updates daily and is very performant, it just delivers very large datasets.</p>
+<h2 id='module-data-api'>Module Data API</h2>
+<p>The Module Data API is intended for real-time use cases, such as adding a specific data attribute to a scorecard (ex: total score) or for probing specific attributes across many modules. </p>
+
+<p>At its core it is a query API with various optional and required parameters. For maximum perfomance, this API has a few considerations to keep in mind:</p>
+
+<ul>
+<li>It is a paging API that returns 30 results in each request. Its is the developers responsibility to make further calls to page through the remaining dataset (30 results at a time).</li>
+<li>You can retrieve as many indicators as you require but be warned that these can grow the dataset tremendously which will slow-down API responsiveness. The preferred use case is very targeted data retrieval.</li>
+</ul>
+
+<p>Indicators are specified using the same column heading names as the bulk CSV. You can review the most commonly used attributes by viewing the data dictionary in the left navigation. Any deeper requirements should involve a Higg expert user who can help navigate those requirements to make sure you are retrieving the correct indicators.</p>
+<h2 id='adoption-data-api'>Adoption Data API</h2>
+<p>The Adoption Data API is still in planning but conceptually will consist of GET calls that allow you to retrieve adoption related data for your account, callback registrations that allow Higg systems to contact discrete endpoints when defined events occur, and PUT/POST calls that allow you to update your owned modules, shared modules, and shared account data with custom metadata relevant and specific to your account.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+<pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+  -H <span class="s2">"higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="err">#</span> <span class="nx">With</span> <span class="nx">XHR</span><span class="p">,</span> <span class="nx">you</span> <span class="nx">can</span> <span class="nx">just</span> <span class="nx">pass</span> <span class="nx">the</span> <span class="nx">correct</span> <span class="nx">header</span> <span class="kd">with</span> <span class="nx">each</span> <span class="nx">request</span><span class="p">.</span> <span class="nx">The</span> <span class="nx">same</span> <span class="nx">construct</span> <span class="nx">is</span> <span class="kc">true</span> <span class="k">for</span> <span class="nx">a</span> <span class="nx">nodejs</span> <span class="nx">request</span> <span class="nx">object</span><span class="p">.</span>
+<span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s2">"higg-api-token"</span><span class="p">,</span> <span class="s2">"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg"</span><span class="p">);</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace the JWT token with your provided API key.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>The Higg Public API uses JWT based API keys to allow access to the API. You can register a new Higg Public API key by contacting support (support@higg.com).</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>The Higg Public API  expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code>Authorization: meowmeowmeow</code></p>
+<p><code>higg-api-token: {{provided jwt api key}}</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>{{provided jwt api key}</code> with your provided API key.
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id='bulk-csv-api-2'>Bulk CSV API</h1><h2 id='get-all-fem-module-data'>Get All FEM module data</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  https://api.production.higg.org/api/femcsv/5a30063250e33d1712372b7fa99_example <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'cache-control: no-cache'</span> <span class="se">\</span>
+  -H <span class="s1">'higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"request"</span><span class="p">);</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span> <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.production.higg.org/api/femcsv/5a30063250e33d1712372b7fa99_example'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> 
+     <span class="s1">'cache-control'</span><span class="p">:</span> <span class="s1">'no-cache'</span><span class="p">,</span>
+     <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
+     <span class="s1">'higg-api-token'</span><span class="p">:</span> <span class="s1">'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg'</span> <span class="p">},</span>
+  <span class="nx">json</span><span class="p">:</span> <span class="kc">true</span> <span class="p">};</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The above command returns the standard CSV bulk export format.</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
+
+<p>This endpoint retrieves all FEM module data as a CSV stream.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
+<p><code>GET https://api.production.higg.org/api/femcsv/5a30063250e33d1712372b7fa99_example</code></p>
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember to send the correct authentication header!
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='get-all-fslm-module-data'>Get All FSLM module data</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
+  https://api.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'cache-control: no-cache'</span> <span class="se">\</span>
+  -H <span class="s1">'higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"request"</span><span class="p">);</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span> <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> 
+     <span class="s1">'cache-control'</span><span class="p">:</span> <span class="s1">'no-cache'</span><span class="p">,</span>
+     <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
+     <span class="s1">'higg-api-token'</span><span class="p">:</span> <span class="s1">'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg'</span> <span class="p">},</span>
+  <span class="nx">json</span><span class="p">:</span> <span class="kc">true</span> <span class="p">};</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The above command returns the standard CSV bulk export format.</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+<p>This endpoint retrieves all FSLM module data as a CSV stream.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<p><code>GET https://api.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example</code></p>
+
+<aside class="success">
+Remember to send the correct authentication header!
+</aside>
+<h1 id='module-data-api-2'>Module Data API</h1>
+<p>The Module Data API is a more complex query API with the following required and optional attributes. All attributes are sent as JSON.</p>
+
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th>Attribute</th>
+<th>Required</th>
+<th>Usage</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>rfi_pid</td>
+<td>X</td>
+<td>Specify which module category of data to retrieve (fem2017</td>
+</tr>
+<tr>
+<td>from</td>
+<td>-</td>
+<td>Integer value of where to start the window of results. Allows for pagination of the 30 module window. If not specified, defaults to 0.</td>
+</tr>
+<tr>
+<td>modules</td>
+<td>-</td>
+<td>Specify an array of specific module ID&#39;s to retrieve. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID&#39;s that do not come from the specified Account ID&#39;s.</td>
+</tr>
+<tr>
+<td>accountsmodules</td>
+<td>-</td>
+<td>Specify an array of specific account ID&#39;s to retrieve modules from. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID&#39;s that do not come from the specified Account ID&#39;s.</td>
+</tr>
+<tr>
+<td>refids</td>
+<td>-</td>
+<td>Specify an array of which indicators to retrieve. If not specified, only module demographic data is returned. Indicator names are same as in bulk CSV. See Data Dictionary for more information.</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='get-module-data'>Get Module Data</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  https://api.production.higg.org/api/moduledata/5a30063250e33d1712372b7fa99_example <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+"modules":["5a141df8510be031235112_sample"],
+"refids": ["sitecountry","sipfacilitytypetrim","table-ensourcenatgastracktable"],
+"rfi_pid": "fem2018"
+}'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"request"</span><span class="p">);</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span> <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.production.higg.org/api/moduledata/5a30063250e33d1712372b7fa99_example'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> 
+   <span class="p">{</span> <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
+   <span class="s1">'higg-api-token'</span><span class="p">:</span> <span class="s1">'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg'</span> <span class="p">},</span>
+  <span class="na">body</span><span class="p">:</span> 
+   <span class="p">{</span> <span class="na">modules</span><span class="p">:</span> <span class="p">[</span> <span class="s1">'5a141df8510be031235112_sample'</span> <span class="p">],</span>
+     <span class="na">refids</span><span class="p">:</span> 
+      <span class="p">[</span> <span class="s1">'sitecountry'</span><span class="p">,</span>
+        <span class="s1">'sipfacilitytypetrim'</span><span class="p">,</span>
+        <span class="s1">'table-ensourcenatgastracktable'</span> <span class="p">],</span>
+     <span class="na">rfi_pid</span><span class="p">:</span> <span class="s1">'fem2018'</span> <span class="p">}</span>
+     <span class="p">};</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+
 </code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The above command returns the following JSON data</p>
 </blockquote>
+
+<p>The Module Data API allows for retrieval of all assessment types (FEM, FSLM, BRM) but each request is specific to an rfi_pid. This is to ensure uniformity in indicator retrieval and index performance.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>POST https://api.production.higg.org/api/moduledata/5a30063250e33d1712372b7fa99_example</code></p>
+
+<p>See examples for JSON argument usage</p>
+
+<p>The result set, regardless of rfi_pid, is in the following format:</p>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+    </span><span class="s2">"my_assessments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"assessments"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"recieved_assessments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1490</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"assessments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"facilityid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1111111"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"higgid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"121221e_sample"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"moduleid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vfemsurvey:...._sample"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"rfi_pid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fem2018"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"posted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FACILITY NAME"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FACILITY ADDRESS"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"placeid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOOGLE PLACE ID FOR THIS FACILITY"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lat"</span><span class="p">:</span><span class="w"> </span><span class="mf">111.11</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lng"</span><span class="p">:</span><span class="w"> </span><span class="mf">222.22</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"indicators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"sitecountry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"originalvalue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"India"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"verifiedvalue"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"verifierselection"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"verifiernotes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"flagged"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"sipfacilitytypetrim"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"originalvalue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"verifiedvalue"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"verifierselection"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"verifiernotes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"flagged"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"table-ensourcenatgastracktable"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"verifiedvalue"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"verifierselection"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"verifiernotes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"flagged"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"site"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                        </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="mi">1</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"water"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"watsources"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"watbaselineopt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wathighestuse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wattargetopt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"watimproveplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"watimproveopt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"watbalanceanalysis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                            </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                            </span><span class="mi">3</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                            </span><span class="mi">3</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"energy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"ensourcetrackopt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"enbaselinesource"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"enhighestuse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"entargetssource"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"enimproveplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"enimprovesource"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"enscope3ghg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                            </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                            </span><span class="mi">3</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="mi">1</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"waste"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"wstsourcenh"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wstsourceh"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wstsegregatestreams"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wsthstorage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wstnhstorage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wstpolhtml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wsthtrain"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wstbaseline"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wstbaselinedisp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wsttarget"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wsttargetdisp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wstredimpplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wstredimp2018"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wstredimpdisp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wsthazdispvalidate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wstdispzerowaste"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wstdispupcycle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mf">25.000000000000004</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                            </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                            </span><span class="mi">3</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="mi">1</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.571428571428577</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wastewater"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"wwstandard"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"wwrecycle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                            </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                            </span><span class="mi">3</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                            </span><span class="mi">3</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemicals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"chemtrack"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemsds"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.96</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemtraining"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chememergplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.96</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemsafetyequip"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemhazardsign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chempurchasereq"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemhealthprogram"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemstorage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.96</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemtrainingRSL"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemprocessidentifyRSL"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.96</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemprocessmonitorRSL"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemtraceinventory"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemimproveplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemreduceplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemsourcelist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemcollabalternatives"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemtracelotnumber"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemanalysishumanenv"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemanalysislifecycle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemdocumentedqa"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemcontractorsRSL"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"chemdocumentedgoals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mf">11.520000000000001</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="mi">1</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">11.520000000000001</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"airemissions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"airsourceopstrack"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"airsourceprodtrack"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"airsourcerefrignew"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"aircontroldevopshtml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"aircontroldevprodhtml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"airbeyondpermit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">62.5</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"airimplementprocess"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mf">62.5</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                            </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                            </span><span class="mi">3</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                            </span><span class="mi">2</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">87.5</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"ems"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"emsmgmt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"emsstrategy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"emsopsimpact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"emspermitstatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"emsregulationsystem"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"emsequipmaintain"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"emsstrategyreview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"emsmgmtcompetence"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"emsstrategyawareness"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"emshiggindexsubcontract"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.25</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"emsengagelocal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="s2">"emshiggindexupstream"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                                </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.833333333333336</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.25</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="mi">1</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">27.083333333333336</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"finalScore"</span><span class="p">:</span><span class="w"> </span><span class="mf">54.23925170068027</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"sipvalidoperatinglicense"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"applicabilities"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"airemissions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppAir005"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"water"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppWater001"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ems"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppEMS001"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wastewater"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppWW004"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"chemicals"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppChem001"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+<aside class="success">
+Remember to send the correct authentication header!
 </aside>
 
-<p>The Kittn API uses the following error codes:</p>
+<aside class="success">
+Remember to send arguments as JSON!
+</aside>
+<h1 id='adoption-data-api-2'>Adoption Data API</h1>
+<p>Pending final implementation</p>
+<h1 id='errors'>Errors</h1>
+<p>The Higg Public API uses the following error codes:</p>
 
 <table><thead>
 <tr>
@@ -451,27 +998,19 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 </tr>
 <tr>
 <td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>Unauthorized -- Your API key is invalid or does not match requested account ID in the URL.</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>Not Found -- The specified query produced no results</td>
 </tr>
 <tr>
 <td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>Method Not Allowed -- You tried to access with an invalid method.</td>
 </tr>
 <tr>
 <td>406</td>
 <td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
 </tr>
 <tr>
 <td>418</td>
@@ -490,13 +1029,342 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
+<h1 id='data-dictionary'>Data Dictionary</h1>
+<p>Higg assessments contain a large amount of data. The FEM export has over 4000 columns for each assessment. Defining every indicator is beyond the scope of this API documentation. </p>
+
+<p>Instead, we define a dictionary of the most commonly used attributes to help with common operations. For indicators outside of this list, consult your local Higg expert for more information.</p>
+
+<p>FSLM data definitions currently follow the SLCP Output Key dictionary.</p>
+
+<p>BRM data definitions are being finalized as of the drafting of this document.</p>
+
+<p>Once the FSLM Scoring Pilot is complete, this data dictionary will be enhanced to show the new Higg specific fields that are available.</p>
+<h2 id='dictionary'>Dictionary</h2>
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Notes</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>surveyid</td>
+<td>Unique ID for this module line</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>version</td>
+<td>Version of survey (ex: fem2018, fem2017)</td>
+<td></td>
+</tr>
+<tr>
+<td>groupid</td>
+<td>Account ID of module owner</td>
+<td></td>
+</tr>
+<tr>
+<td>groupname</td>
+<td>Account name of module owner</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>SAC_Id</td>
+<td>Higg ID of module owner</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>ParentCompany</td>
+<td>Parent company (if any) of assessment owner</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>users</td>
+<td>Semi-colon delimited list of account users for this account</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>posted</td>
+<td>Indicates posted status of this module</td>
+<td>BOOLEAN</td>
+</tr>
+<tr>
+<td>verified</td>
+<td>Indicates if this is an FEM or vFEM</td>
+<td>BOOLEAN</td>
+</tr>
+<tr>
+<td>related_rfi_answer</td>
+<td>If verified == true, indicates the self-assessment ID that created this verified assessment</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sitecountry</td>
+<td>Facility country from the Facility profile</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipindustrysector</td>
+<td>Sector this facility operates in ex: ‘Footwear’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipfacilitytype</td>
+<td>Type of facility. Ex: ‘Printing or Dyeing’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipfacilityprocesseschem</td>
+<td>Facility Chemical Processes. Ex: ‘Raw Material Storage’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipfacilityprocessesmaterials</td>
+<td>Facility Material Processes. Ex: ‘Extrusion’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipfacilityprocessespkg</td>
+<td>Facility Packaging Processes. Ex: ‘Cutting’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipfacilityprocessesprintdye</td>
+<td>Facility Print &amp; Dye Processes. Ex: ‘Sublimation’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipfacilityprocessessew</td>
+<td>Facility Sewing Processes. Ex: ‘Cutting’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipfacilityprocessestrim</td>
+<td>Facility Trim Process. Ex: ‘Casting’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipfulltimeemployees</td>
+<td>Employee count (pre-determined ranges): Ex: ‘501-1000’</td>
+<td>INTEGER</td>
+</tr>
+<tr>
+<td>siparttimeemployees</td>
+<td>Employee count (pre-determined ranges): Ex: ‘501-1000’</td>
+<td>INTEGER</td>
+</tr>
+<tr>
+<td>sipfacilityannualprodvolunits</td>
+<td>Unit of product, single selection, ‘Kilogram’, ‘Meter’, ‘Sq Yard’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipmaterialtypes</td>
+<td>Material Types. Ex: ‘Foams’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipmaterialbarriers</td>
+<td>Material Types: Barriers. Ex: ‘Microporus Coating’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipmaterialfoams</td>
+<td>Material Types: Foams. Ex: ‘Polyethylene (PE) foam’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipmaterialinsulation</td>
+<td>Material Types: Insulation. Ex: ‘Sheep Wool Insulation’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipmaterialleather</td>
+<td>Material Types: Leather. Ex: ‘Goat Leather’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipmaterialplastics</td>
+<td>Material Types: Plastic. Ex: ‘Polyester Plastic’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipmaterialmetals</td>
+<td>Material Types: Metals. Ex: ‘Brass’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipmaterialrubbers</td>
+<td>Material Types: Rubbers. Ex: ‘Isoprene Rubber (IR)’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipmaterialsynthleather</td>
+<td>Material Types: Synthetic Leather. Ex: ‘Polyurethane (PU)’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipmaterialtextiles</td>
+<td>Material Types: Textiles. Ex: ‘Carbon fiber fabric’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>sipmaterialwoodbased</td>
+<td>Material Types: Wood. Ex: ‘Cork’</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>score.total</td>
+<td>Total Higg score for this module</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>ems.score</td>
+<td>Total score in EMS section</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>ems.level1</td>
+<td>Level 1 score in EMS section</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>ems.level2</td>
+<td>Level 2 score in EMS section</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>ems.level3</td>
+<td>Level 3 score in EMS section</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>energy.score</td>
+<td>Total score for Energy section</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>energy.level1</td>
+<td>Level 1 score in Energy section</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>energy.level2</td>
+<td>Level 2 score in Energy section</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>waste.level1</td>
+<td>Level 1 score in Waste</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>waste.level2</td>
+<td>Level 2 score in Waste</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>waste.level3</td>
+<td>Level 3 score in Waste</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>water.score</td>
+<td>Total score in Water Use section</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>water.level1</td>
+<td>Level 1 score in Water Use</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>water.level2</td>
+<td>Level 2 score in Water Use</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>water.level3</td>
+<td>Level 3 score in Water Use</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>air.score</td>
+<td>Total score in Air Emissions section</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>air.level1</td>
+<td>Level 1 score in Air Emissions</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>airs.level2</td>
+<td>Level 2 score in Air Emissions</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>airs.level3</td>
+<td>Level 3 score in Air Emissions</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>chemicals.score</td>
+<td>Total score in Chemicals Management section</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>chemicals.level1</td>
+<td>Level 1 score in Chemicals</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>chemicals.level2</td>
+<td>Level 2 score in Chemicals</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>chemicals.level3</td>
+<td>Level 3 score in Chemicals</td>
+<td>FLOAT</td>
+</tr>
+<tr>
+<td>*air.applicability</td>
+<td>Selected applicability path for Air</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>*water.applicability</td>
+<td>Selected applicability path for Water</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>*ems.applicability</td>
+<td>Selected applicability path EMS</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>*wastewater.applicability</td>
+<td>Selected applicability path for Wastewater</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>*waste.applicability</td>
+<td>Selected applicability path for Waste</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>*chemicals.applicability</td>
+<td>Selected applicability path for Chemicals</td>
+<td>STRING</td>
+</tr>
+</tbody></table>
+<h2 id='applicabilities'>Applicabilities</h2>
+<p>To be updated soon.</p>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
                 <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
