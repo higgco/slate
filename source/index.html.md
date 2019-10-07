@@ -208,7 +208,7 @@ request(options, function (error, response, body) {
 
 ```
 
-> The above command returns the following JSON data
+> The above command returns the following JSON data. This may change slightly when the API goes from Beta to Final but no major changes are expected.
 
 The Module Data API allows for retrieval of all assessment types (FEM, FSLM, BRM) but each request is specific to an rfi_pid. This is to ensure uniformity in indicator retrieval and index performance.
 
