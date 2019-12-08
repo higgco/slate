@@ -179,7 +179,7 @@ size | query | - | Integer value of how many results to return. If not specified
 modules | query | - | Specify an array of specific module ID's (long Higg ID) to retrieve. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID's that do not come from the specified Account ID's.
 assessmentIds | query | - | Specify an array of specific account ID's to retrieve modules from. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID's that do not come from the specified Account ID's.
 accountIds | query | - | An array of account ID's (long Higg ID) to query modules for
-include | filter | - | Specify an array of which indicators to retrieve. If not specified, only module demographic data is returned. Indicator names are same as in bulk CSV. See Data Dictionary for more information.
+include | filter | - | Specify an array of which indicators to retrieve. If not specified, ALL module data is returned. This can be VERY large. Indicator names are same as in bulk CSV. See Data Dictionary for more information.
 status | filter | - | An array of status to filter modules for
 verified | filter | - | Filter for verified or unverified modules
 usage | filter | - | Return resource usage data. Defaults to false
@@ -786,7 +786,7 @@ size | query | - | Integer value of how many results to return. If not specified
 modules | query | - | Specify an array of specific module ID's (long Higg ID) to retrieve. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID's that do not come from the specified Account ID's.
 assessmentIds | query | - | Specify an array of specific account ID's to retrieve modules from. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID's that do not come from the specified Account ID's.
 accountIds | query | - | An array of account ID's (long Higg ID) to query modules for
-include | filter | - | Specify an array of which indicators to retrieve. If not specified, only module demographic data is returned. Indicator names are same as in bulk CSV. See Data Dictionary for more information.
+include | filter | - | Specify an array of which indicators to retrieve. If not specified, ALL data is returned. This can be VERY large. Indicator names are same as in bulk CSV. See Data Dictionary for more information.
 status | filter | - | An array of status to filter modules for
 verified | filter | - | Filter for verified or unverified modules
 scores | filter | Return scoring data. Defaults to false
