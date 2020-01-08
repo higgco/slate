@@ -305,7 +305,7 @@
 <ul>
 <li>It is a paging API that returns a user defined number of results in each request. Its is the developers responsibility to make further calls to page through the remaining dataset.</li>
 <li>You can retrieve as many indicators as you require but be warned that these can grow the dataset tremendously which will slow-down API responsiveness. The preferred use case is very targeted data retrieval.</li>
-<li>You can specify if you want scores, ghg calcs, and resource usage data returned</li>
+<li>Scores, ghg calcs, and resource usage data returned as indicators</li>
 <li>You can specify module type (fem2018, fem2019 etc), verification status, and module status, as filters.</li>
 </ul>
 
@@ -456,7 +456,7 @@ Remember to send the correct authentication header!
 <td>include</td>
 <td>filter</td>
 <td>-</td>
-<td>Specify an array of which indicators to retrieve. If not specified, ALL module data is returned. This can be VERY large. Indicator names are same as in bulk CSV. See Data Dictionary for more information.</td>
+<td>Specify an array of which indicators to retrieve. If not specified, ALL module data is returned. This can be VERY large. Indicator names are same as in bulk CSV. See Data Dictionary for more information. &#39;scores&#39;, &#39;ghg&#39;, and &#39;usage&#39; keywords enable the relevant data to be retrieved for each assessment.</td>
 </tr>
 <tr>
 <td>status</td>
@@ -470,24 +470,6 @@ Remember to send the correct authentication header!
 <td>-</td>
 <td>Filter for verified or unverified modules</td>
 </tr>
-<tr>
-<td>usage</td>
-<td>filter</td>
-<td>-</td>
-<td>Return resource usage data. Defaults to false</td>
-</tr>
-<tr>
-<td>ghg</td>
-<td>filter</td>
-<td>Return ghg data. Defaults to false</td>
-<td></td>
-</tr>
-<tr>
-<td>scores</td>
-<td>filter</td>
-<td>Return scoring data. Defaults to false</td>
-<td></td>
-</tr>
 </tbody></table>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
   https://v2-api.production.higg.org/api/moduledata/fem <span class="se">\</span>
@@ -497,13 +479,11 @@ Remember to send the correct authentication header!
     "include": [
         "sitecountry",
         "sipfacilitytypetrim",
-        "table-ensourcenatgastracktable"
+        "table-ensourcenatgastracktable",
+        "scores"
     ],
     "assessmentIds": ["ASSESSMENT_ID_1","ASSESSMENT_ID_2"],
     "accountIds":["ACCCOUNT_ID_1","ACCCOUNT_ID_2"],
-    "usage": false,
-    "scores": true,
-    "ghg": false,
     "version": "fem2018",
     "verified": true,
     "status": ["ASC","VRF"],
@@ -522,13 +502,11 @@ Remember to send the correct authentication header!
     <span class="s2">"include"</span><span class="p">:</span> <span class="p">[</span>
         <span class="s2">"sitecountry"</span><span class="p">,</span>
         <span class="s2">"sipfacilitytypetrim"</span><span class="p">,</span>
-        <span class="s2">"table-ensourcenatgastracktable"</span>
+        <span class="s2">"table-ensourcenatgastracktable"</span><span class="p">,</span>
+        <span class="s2">"scores"</span>
     <span class="p">],</span>
     <span class="s2">"assessmentIds"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"ASSESSMENT_ID_1"</span><span class="p">,</span><span class="s2">"ASSESSMENT_ID_2"</span><span class="p">],</span>
     <span class="s2">"accountIds"</span><span class="p">:[</span><span class="s2">"ACCCOUNT_ID_1"</span><span class="p">,</span><span class="s2">"ACCCOUNT_ID_2"</span><span class="p">],</span>
-    <span class="s2">"usage"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
-    <span class="s2">"scores"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="s2">"ghg"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
     <span class="s2">"version"</span><span class="p">:</span> <span class="s2">"fem2018"</span><span class="p">,</span>
     <span class="s2">"verified"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"status"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"ASC"</span><span class="p">,</span><span class="s2">"VRF"</span><span class="p">],</span>
@@ -1134,12 +1112,6 @@ Remember to send arguments as JSON!
 <td>-</td>
 <td>Filter for verified or unverified modules</td>
 </tr>
-<tr>
-<td>scores</td>
-<td>filter</td>
-<td>Return scoring data. Defaults to false</td>
-<td></td>
-</tr>
 </tbody></table>
 <pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
   https://v2-api.production.higg.org/api/moduledata/fslm <span class="se">\</span>
@@ -1149,11 +1121,11 @@ Remember to send arguments as JSON!
     "include": [
         "FP-BI-3",
         "FP-BS-10",
-        "FP-BS-4"
+        "FP-BS-4",
+        "scores"
     ],
     "assessmentIds": ["ASSESSMENT_ID_1","ASSESSMENT_ID_2"],
     "accountIds":["ACCCOUNT_ID_1","ACCCOUNT_ID_2"],
-    "scores": true,
     "version": "fslm",
     "verified": true,
     "status": ["ASC","VRF"],
@@ -1172,11 +1144,11 @@ Remember to send arguments as JSON!
     <span class="s2">"include"</span><span class="p">:</span> <span class="p">[</span>
         <span class="s2">"FP-BI-3"</span><span class="p">,</span>
         <span class="s2">"FP-BS-10"</span><span class="p">,</span>
-        <span class="s2">"FP-BS-4"</span>
+        <span class="s2">"FP-BS-4"</span><span class="p">,</span>
+        <span class="s2">"scores"</span>
     <span class="p">],</span>
     <span class="s2">"assessmentIds"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"ASSESSMENT_ID_1"</span><span class="p">,</span><span class="s2">"ASSESSMENT_ID_2"</span><span class="p">],</span>
     <span class="s2">"accountIds"</span><span class="p">:[</span><span class="s2">"ACCCOUNT_ID_1"</span><span class="p">,</span><span class="s2">"ACCCOUNT_ID_2"</span><span class="p">],</span>
-    <span class="s2">"scores"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"version"</span><span class="p">:</span> <span class="s2">"fslm"</span><span class="p">,</span>
     <span class="s2">"verified"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="s2">"status"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"ASC"</span><span class="p">,</span><span class="s2">"VRF"</span><span class="p">],</span>
