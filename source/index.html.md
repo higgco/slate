@@ -40,7 +40,7 @@ At its core it is a query API with various optional and required parameters. For
 
 * It is a paging API that returns a user defined number of results in each request. Its is the developers responsibility to make further calls to page through the remaining dataset.
 * You can retrieve as many indicators as you require but be warned that these can grow the dataset tremendously which will slow-down API responsiveness. The preferred use case is very targeted data retrieval.
-* You can specify if you want scores, ghg calcs, and resource usage data returned
+* Scores, ghg calcs, and resource usage data returned as indicators
 * You can specify module type (fem2018, fem2019 etc), verification status, and module status, as filters.
 
 Indicators are specified using the same column heading names as the bulk CSV. You can review the most commonly used attributes by viewing the data dictionary in the left navigation. Any deeper requirements should involve a Higg expert user who can help navigate those requirements to make sure you are retrieving the correct indicators.
@@ -179,12 +179,9 @@ size | query | - | Integer value of how many results to return. If not specified
 modules | query | - | Specify an array of specific module ID's (long Higg ID) to retrieve. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID's that do not come from the specified Account ID's.
 assessmentIds | query | - | Specify an array of specific account ID's to retrieve modules from. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID's that do not come from the specified Account ID's.
 accountIds | query | - | An array of account ID's (long Higg ID) to query modules for
-include | filter | - | Specify an array of which indicators to retrieve. If not specified, ALL module data is returned. This can be VERY large. Indicator names are same as in bulk CSV. See Data Dictionary for more information.
+include | filter | - | Specify an array of which indicators to retrieve. If not specified, ALL module data is returned. This can be VERY large. Indicator names are same as in bulk CSV. See Data Dictionary for more information. 'scores', 'ghg', and 'usage' keywords enable the relevant data to be retrieved for each assessment. 
 status | filter | - | An array of status to filter modules for
 verified | filter | - | Filter for verified or unverified modules
-usage | filter | - | Return resource usage data. Defaults to false
-ghg | filter | Return ghg data. Defaults to false
-scores | filter | Return scoring data. Defaults to false
 
 
 ```shell
@@ -196,13 +193,11 @@ curl -X POST \
     "include": [
         "sitecountry",
         "sipfacilitytypetrim",
-        "table-ensourcenatgastracktable"
+        "table-ensourcenatgastracktable",
+        "scores"
     ],
     "assessmentIds": ["ASSESSMENT_ID_1","ASSESSMENT_ID_2"],
     "accountIds":["ACCCOUNT_ID_1","ACCCOUNT_ID_2"],
-    "usage": false,
-    "scores": true,
-    "ghg": false,
     "version": "fem2018",
     "verified": true,
     "status": ["ASC","VRF"],
@@ -224,13 +219,11 @@ var options = { method: 'POST',
     "include": [
         "sitecountry",
         "sipfacilitytypetrim",
-        "table-ensourcenatgastracktable"
+        "table-ensourcenatgastracktable",
+        "scores"
     ],
     "assessmentIds": ["ASSESSMENT_ID_1","ASSESSMENT_ID_2"],
     "accountIds":["ACCCOUNT_ID_1","ACCCOUNT_ID_2"],
-    "usage": false,
-    "scores": true,
-    "ghg": false,
     "version": "fem2018",
     "verified": true,
     "status": ["ASC","VRF"],
@@ -789,7 +782,6 @@ accountIds | query | - | An array of account ID's (long Higg ID) to query module
 include | filter | - | Specify an array of which indicators to retrieve. If not specified, ALL data is returned. This can be VERY large. Indicator names are same as in bulk CSV. See Data Dictionary for more information.
 status | filter | - | An array of status to filter modules for
 verified | filter | - | Filter for verified or unverified modules
-scores | filter | Return scoring data. Defaults to false
 
 
 ```shell
@@ -801,11 +793,11 @@ curl -X POST \
     "include": [
         "FP-BI-3",
         "FP-BS-10",
-        "FP-BS-4"
+        "FP-BS-4",
+        "scores"
     ],
     "assessmentIds": ["ASSESSMENT_ID_1","ASSESSMENT_ID_2"],
     "accountIds":["ACCCOUNT_ID_1","ACCCOUNT_ID_2"],
-    "scores": true,
     "version": "fslm",
     "verified": true,
     "status": ["ASC","VRF"],
@@ -827,11 +819,11 @@ var options = { method: 'POST',
     "include": [
         "FP-BI-3",
         "FP-BS-10",
-        "FP-BS-4"
+        "FP-BS-4",
+        "scores"
     ],
     "assessmentIds": ["ASSESSMENT_ID_1","ASSESSMENT_ID_2"],
     "accountIds":["ACCCOUNT_ID_1","ACCCOUNT_ID_2"],
-    "scores": true,
     "version": "fslm",
     "verified": true,
     "status": ["ASC","VRF"],
