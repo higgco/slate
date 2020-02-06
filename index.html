@@ -278,6 +278,15 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#scores" class="toc-h1 toc-link" data-title="Scores">Scores</a>
+          </li>
+          <li>
+            <a href="#ghg" class="toc-h1 toc-link" data-title="GHG">GHG</a>
+          </li>
+          <li>
+            <a href="#resource-usage" class="toc-h1 toc-link" data-title="Resource Usage">Resource Usage</a>
+          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href='mailto:support@higg.com'>Contact Support for a Developer Key</a></li>
@@ -336,7 +345,7 @@ curl <span class="s2">"api_endpoint_here"</span>
 You must replace <code>{{provided jwt api key}</code> with your provided API key.
 </aside>
 <h1 id='bulk-csv-api-offline'>Bulk CSV API - OFFLINE</h1><h2 id='get-all-fem-module-data'>Get All FEM module data</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  https://api.production.higg.org/api/femcsv/5a30063250e33d1712372b7fa99_example <span class="se">\</span>
+  https://api-v2.production.higg.org/api/femcsv/5a30063250e33d1712372b7fa99_example <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'cache-control: no-cache'</span> <span class="se">\</span>
   -H <span class="s1">'higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg'</span>
@@ -362,20 +371,20 @@ You must replace <code>{{provided jwt api key}</code> with your provided API key
 
 <p>This endpoint retrieves all FEM module data as a CSV stream.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET https://api.production.higg.org/api/femcsv/5a30063250e33d1712372b7fa99_example</code></p>
+<p><code>GET https://api-v2.production.higg.org/api/femcsv/5a30063250e33d1712372b7fa99_example</code></p>
 
 <aside class="success">
 Remember to send the correct authentication header!
 </aside>
 <h2 id='get-all-fslm-module-data'>Get All FSLM module data</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="se">\</span>
-  https://api.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example <span class="se">\</span>
+  https://api-v2.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example <span class="se">\</span>
   -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
   -H <span class="s1">'cache-control: no-cache'</span> <span class="se">\</span>
   -H <span class="s1">'higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg'</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"request"</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span> <span class="na">method</span><span class="p">:</span> <span class="s1">'GET'</span><span class="p">,</span>
-  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api-v2.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example'</span><span class="p">,</span>
   <span class="na">headers</span><span class="p">:</span> 
      <span class="s1">'cache-control'</span><span class="p">:</span> <span class="s1">'no-cache'</span><span class="p">,</span>
      <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
@@ -394,7 +403,7 @@ Remember to send the correct authentication header!
 
 <p>This endpoint retrieves all FSLM module data as a CSV stream.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET https://api.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example</code></p>
+<p><code>GET https://api-v2.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example</code></p>
 
 <aside class="success">
 Remember to send the correct authentication header!
@@ -456,7 +465,7 @@ Remember to send the correct authentication header!
 <td>include</td>
 <td>filter</td>
 <td>-</td>
-<td>Specify an array of which indicators to retrieve. If not specified, ALL module data is returned. This can be VERY large. Indicator names are same as in bulk CSV. See Data Dictionary for more information. &#39;scores&#39;, &#39;ghg&#39;, and &#39;usage&#39; keywords enable the relevant data to be retrieved for each assessment.</td>
+<td>Specify an array of which indicators to retrieve. If not specified, ALL module data is returned. This can be VERY large. Indicator names are same as in bulk CSV and prefixed by &#39;questions.&#39;. See example below and Data Dictionary for more information. &#39;scores&#39;, &#39;ghg&#39;, and &#39;usage&#39; keywords enable the relevant data to be retrieved for each assessment.</td>
 </tr>
 <tr>
 <td>status</td>
@@ -477,9 +486,9 @@ Remember to send the correct authentication header!
   -H <span class="s1">'higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg'</span> <span class="se">\</span>
   -d <span class="s1">'{
     "include": [
-        "sitecountry",
-        "sipfacilitytypetrim",
-        "table-ensourcenatgastracktable",
+        "questions.sitecountry",
+        "questions.sipfacilitytypetrim",
+        "questions.table-ensourcenatgastracktable",
         "scores"
     ],
     "assessmentIds": ["ASSESSMENT_ID_1","ASSESSMENT_ID_2"],
@@ -500,9 +509,9 @@ Remember to send the correct authentication header!
   <span class="na">body</span><span class="p">:</span> 
    <span class="p">{</span>
     <span class="s2">"include"</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">"sitecountry"</span><span class="p">,</span>
-        <span class="s2">"sipfacilitytypetrim"</span><span class="p">,</span>
-        <span class="s2">"table-ensourcenatgastracktable"</span><span class="p">,</span>
+        <span class="s2">"questions.sitecountry"</span><span class="p">,</span>
+        <span class="s2">"questions.sipfacilitytypetrim"</span><span class="p">,</span>
+        <span class="s2">"questions.table-ensourcenatgastracktable"</span><span class="p">,</span>
         <span class="s2">"scores"</span>
     <span class="p">],</span>
     <span class="s2">"assessmentIds"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"ASSESSMENT_ID_1"</span><span class="p">,</span><span class="s2">"ASSESSMENT_ID_2"</span><span class="p">],</span>
@@ -1098,7 +1107,7 @@ Remember to send arguments as JSON!
 <td>include</td>
 <td>filter</td>
 <td>-</td>
-<td>Specify an array of which indicators to retrieve. If not specified, ALL data is returned. This can be VERY large. Indicator names are same as in bulk CSV. See Data Dictionary for more information.</td>
+<td>Specify an array of which indicators to retrieve. If not specified, ALL data is returned. This can be VERY large. Indicator names are same as in bulk CSV and prefixed by &#39;questions.&#39;  See Data Dictionary for more information.</td>
 </tr>
 <tr>
 <td>status</td>
@@ -1119,9 +1128,9 @@ Remember to send arguments as JSON!
   -H <span class="s1">'higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg'</span> <span class="se">\</span>
   -d <span class="s1">'{
     "include": [
-        "FP-BI-3",
-        "FP-BS-10",
-        "FP-BS-4",
+        "questions.FP-BI-3",
+        "questions.FP-BS-10",
+        "questions.FP-BS-4",
         "scores"
     ],
     "assessmentIds": ["ASSESSMENT_ID_1","ASSESSMENT_ID_2"],
@@ -1142,9 +1151,9 @@ Remember to send arguments as JSON!
   <span class="na">body</span><span class="p">:</span> 
    <span class="p">{</span>
     <span class="s2">"include"</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">"FP-BI-3"</span><span class="p">,</span>
-        <span class="s2">"FP-BS-10"</span><span class="p">,</span>
-        <span class="s2">"FP-BS-4"</span><span class="p">,</span>
+        <span class="s2">"questions.FP-BI-3"</span><span class="p">,</span>
+        <span class="s2">"questions.FP-BS-10"</span><span class="p">,</span>
+        <span class="s2">"questions.FP-BS-4"</span><span class="p">,</span>
         <span class="s2">"scores"</span>
     <span class="p">],</span>
     <span class="s2">"assessmentIds"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"ASSESSMENT_ID_1"</span><span class="p">,</span><span class="s2">"ASSESSMENT_ID_2"</span><span class="p">],</span>
@@ -1350,6 +1359,21 @@ Remember to send arguments as JSON!
 <td>related_rfi_answer</td>
 <td>If verified == true, indicates the self-assessment ID that created this verified assessment</td>
 <td>STRING</td>
+</tr>
+<tr>
+<td>scores</td>
+<td>if &#39;scores&#39; is in includes, a new scores key will be returned. See &#39;Scores&#39; for more information</td>
+<td></td>
+</tr>
+<tr>
+<td>ghg</td>
+<td>if &#39;ghg&#39; is in includes, a new &#39;ghg&#39; key will be returned. See &#39;GHG&#39; for more information</td>
+<td></td>
+</tr>
+<tr>
+<td>usage</td>
+<td>if &#39;usage&#39; is in includes, a new &#39;usage&#39; key will be returened. See &#39;Resource Usage&#39; for more information</td>
+<td></td>
 </tr>
 <tr>
 <td>sitecountry</td>
@@ -1614,7 +1638,1198 @@ Remember to send arguments as JSON!
 </tbody></table>
 <h2 id='applicabilities'>Applicabilities</h2>
 <p>To be updated soon.</p>
+<h1 id='scores'>Scores</h1>
+<p>You may include the &#39;scores&#39; key in the include array. When this is requested, the &#39;scores&#39; key will be populated in the results. </p>
 
+<p>The format of this result contains data for overall score, section level scores, and per question scores. </p>
+
+<p>If no verified data is available, the verified  score will not be populated.</p>
+
+<p>Format:</p>
+<pre class="highlight json tab-json"><code><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"site"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"water"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"watsources"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"watbaselineopt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wathighestuse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wattargetopt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"watimproveplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"watimproveopt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"watbalanceanalysis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">3</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">2</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppWater001"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"energy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"ensourcetrackopt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"enbaselinesource"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"enhighestuse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"entargetssource"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"enimproveplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"enimprovesource"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"enscope3ghg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">3</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">2</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">65</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"waste"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"wstsourcenh"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstsourceh"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstsegregatestreams"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wsthstorage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstnhstorage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstpolhtml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wsthtrain"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstbaseline"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.142857142857143</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstbaselinedisp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.142857142857143</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wsttarget"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.142857142857143</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wsttargetdisp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.142857142857143</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstredimpplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.142857142857143</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstredimp2018"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstredimpdisp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">7.142857142857143</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wsthazdispvalidate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.333333333333334</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstdispzerowaste"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstdispupcycle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mf">25.000000000000004</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mf">42.85714285714286</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.333333333333334</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">3</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">76.1904761904762</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"wastewater"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"wwtrack"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.333333333333334</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wwoffsitetreatplant"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.333333333333334</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wwemergplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.333333333333334</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wwstandard"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wwqualitytest"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wwrecycle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">3</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">2</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppWW002"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"chemicals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"chemtrack"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemsds"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemtraining"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chememergplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemsafetyequip"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemhazardsign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chempurchasereq"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemhealthprogram"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemstorage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.96</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemtrainingRSL"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemprocessidentifyRSL"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemprocessmonitorRSL"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemtraceinventory"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemimproveplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemreduceplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemsourcelist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemcollabalternatives"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemtracelotnumber"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemanalysishumanenv"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemanalysislifecycle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemdocumentedqa"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemcontractorsRSL"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemdocumentedgoals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.160000000000004</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppChem001"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.160000000000004</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"airemissions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"airsourceopstrack"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"airsourceprodtrack"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"airsourcerefrignew"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"aircontroldevopshtml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"aircontroldevprodhtml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"airbeyondpermit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"airimplementprocess"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">3</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppAir005"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"ems"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"emsmgmt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsstrategy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsopsimpact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emspermitstatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsregulationsystem"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsequipmaintain"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsstrategyreview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsmgmtcompetence"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsstrategyawareness"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.25</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emshiggindexsubcontract"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.25</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsengagelocal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.25</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emshiggindexupstream"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">6.25</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mf">25.000000000000004</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">3</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">3</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppEMS001"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"finalScore"</span><span class="p">:</span><span class="w"> </span><span class="mf">62.335782312925176</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"averageLevelAchieved"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.42857142857142855</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sipvalidoperatinglicense"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"site"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"water"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"watsources"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"watbaselineopt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wathighestuse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wattargetopt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"watimproveplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"watimproveopt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"watbalanceanalysis"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.5</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">3</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppWater001"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">22.5</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"energy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"ensourcetrackopt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"enbaselinesource"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"enhighestuse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"entargetssource"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"enimproveplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"enimprovesource"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"enscope3ghg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">3</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"waste"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"wstsourcenh"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstsourceh"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstsegregatestreams"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wsthstorage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstnhstorage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstpolhtml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wsthtrain"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.5714285714285716</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstbaseline"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstbaselinedisp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wsttarget"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wsttargetdisp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstredimpplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstredimp2018"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstredimpdisp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wsthazdispvalidate"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstdispzerowaste"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wstdispupcycle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mf">21.42857142857143</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">21.42857142857143</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"wastewater"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"wwtrack"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wwoffsitetreatplant"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.333333333333334</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wwemergplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wwstandard"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wwqualitytest"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"wwrecycle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.333333333333334</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="mi">3</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">2</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppWW002"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">58.333333333333336</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"chemicals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"chemtrack"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemsds"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemtraining"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chememergplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.96</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemsafetyequip"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemhazardsign"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chempurchasereq"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemhealthprogram"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemstorage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.96</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemtrainingRSL"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.96</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemprocessidentifyRSL"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemprocessmonitorRSL"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemtraceinventory"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.92</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemimproveplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemreduceplan"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemsourcelist"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemcollabalternatives"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemtracelotnumber"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemanalysishumanenv"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemanalysislifecycle"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemdocumentedqa"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemcontractorsRSL"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"chemdocumentedgoals"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mf">18.240000000000002</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppChem001"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">18.240000000000002</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"airemissions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"airsourceopstrack"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"airsourceprodtrack"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"airsourcerefrignew"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"aircontroldevopshtml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"aircontroldevprodhtml"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"airbeyondpermit"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"airimplementprocess"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.5</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppAir005"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.5</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"ems"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"scores"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"emsmgmt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsstrategy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsopsimpact"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emspermitstatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsregulationsystem"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsequipmaintain"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.166666666666667</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsstrategyreview"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsmgmtcompetence"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsstrategyawareness"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emshiggindexsubcontract"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emsengagelocal"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"emshiggindexupstream"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levels"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"1"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.833333333333336</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"2"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"3"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"levelsOpen"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="mi">1</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"levelsAchieved"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="s2">"applicability"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AppEMS001"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.833333333333336</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"finalScore"</span><span class="p">:</span><span class="w"> </span><span class="mf">28.405034013605444</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"averageLevelAchieved"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sipvalidoperatinglicense"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='ghg'>GHG</h1>
+<p>You may include the &#39;ghg&#39; key in the include array. When this is requested, the &#39;ghg&#39; key will be populated in the results. </p>
+
+<p>The format of this result contains data for all emissions sources and is converted to standard units  (liter, kg and MJ) (see How To Higg for more data on this). </p>
+
+<p>If no verified data is available, the verified  score will not be populated.</p>
+
+<p>Format:</p>
+<pre class="highlight json tab-json"><code><span class="s2">"ghg"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"ghg"</span><span class="p">:</span><span class="w"> </span><span class="mf">2527641.2991990526</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ghgSources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"electricpurch"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"ghg"</span><span class="p">:</span><span class="w"> </span><span class="mf">1780349.1121944</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"diesel"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"ghg"</span><span class="p">:</span><span class="w"> </span><span class="mf">120239.03088</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"natgaslpg"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"ghg"</span><span class="p">:</span><span class="w"> </span><span class="mf">50132.329166955555</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"biomassother"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"ghg"</span><span class="p">:</span><span class="w"> </span><span class="mf">576920.826957697</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"biomasssliverwood"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"ghg"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="s2">"sipfacilityannualprodvolquant"</span><span class="p">:</span><span class="w"> </span><span class="mi">8280786</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"sitecountry"</span><span class="p">:</span><span class="w"> </span><span class="mi">243</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"sitecountrytext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vietnam"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"ghg"</span><span class="p">:</span><span class="w"> </span><span class="mf">2527641.2991990526</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ghgSources"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"electricpurch"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"ghg"</span><span class="p">:</span><span class="w"> </span><span class="mf">1780349.1121944</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"diesel"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"ghg"</span><span class="p">:</span><span class="w"> </span><span class="mf">120239.03088</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"natgaslpg"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"ghg"</span><span class="p">:</span><span class="w"> </span><span class="mf">50132.329166955555</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"biomassother"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"ghg"</span><span class="p">:</span><span class="w"> </span><span class="mf">576920.826957697</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"biomasssliverwood"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"ghg"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="mi">251</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"ghg"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="s2">"sipfacilityannualprodvolquant"</span><span class="p">:</span><span class="w"> </span><span class="mi">8280786</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"sitecountry"</span><span class="p">:</span><span class="w"> </span><span class="mi">243</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"sitecountrytext"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vietnam"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='resource-usage'>Resource Usage</h1>
+<p>You may include the &#39;usage&#39; key in the include array. When this is requested, the &#39;usage&#39; key will be populated in the results. </p>
+
+<p>The format of this result contains data for all resource usage metrics and is converted to standard units  (liter, kg and MJ) (see How To Higg for more data on this). </p>
+
+<p>If no verified data is available, the verified  score will not be populated.</p>
+
+<p>Format:</p>
+<pre class="highlight json tab-json"><code><span class="s2">"usage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"self"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"watsourcesurfacetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourceraintotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourcegroundtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourcemunicipaltotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">81325000</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourceseatotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourceprodtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourcewastewatertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourcecombtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourcetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">81325000</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcesteampurchtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourceelectricpurchtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">17553888</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcedieseltotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">1855540.6</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcepetroltotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcechilledwatertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcesolarphotototal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcegeothermtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcehydrototal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcemicrohydrototal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcewindtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoalbhvatotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoalbhvbtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoalothertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoalsbatotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoalsbbtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoalsbctotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoalsbhvctotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoaltotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcenatgaslngtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcenatgaslpgtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">860837.83923352</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcenatgasngtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcenatgasothertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcenatgaspropanetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcenatgastotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">860837.83923352</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcefueloilfivetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcefueloilfourtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcefueloilonetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcefueloilothertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcefueloilsixtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcefueloiltwototal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcefueloiltotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomassbegtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomassbiodieseltotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasscanetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasscashewtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasscorncobtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasscornstalktotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomassefbtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasseucatotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomassothertotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">5066921.32062</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasspalmfibertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasspalmleaftotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasspalmshelltotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasspalmtrunktotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomassparawoodtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasspeanutshellstotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomassricehuskstotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomassricestrawtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasssawdusttotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasssliverwoodtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasstapiocatotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasswoodtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasstotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">5066921.32062</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcetotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">25337187.759853523</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhmaterialstotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">419418</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhmetaltotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">9338</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhplastictotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">18547</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhpapertotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">36939.6</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhcanstotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhfoodtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">51152.6</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhglasstotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhcartonstotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">17416.5</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhothertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhtotaldomtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehprodchemdrumtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">596.7</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehprodfilmprinttotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehprodsludgetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehprodchemtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">39.3</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehprodcompgastotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehprodcontammattotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.6</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehdombatteriestotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.3</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehdomflolighttotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.5</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehdominkcarttotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehdomoilgreasetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehdomemptyconttotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehdomelectronictotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.3</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehdomcoalcombtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">2089.3</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehothertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcetotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">555673.7000000001</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"watsourcesurfacetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourceraintotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourcegroundtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourcemunicipaltotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">81325000</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourceseatotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourceprodtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourcewastewatertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourcecombtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"watsourcetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">81325000</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcesteampurchtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourceelectricpurchtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">17553888</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcedieseltotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">1855540.6</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcepetroltotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcechilledwatertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcesolarphotototal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcegeothermtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcehydrototal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcemicrohydrototal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcewindtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoalbhvatotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoalbhvbtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoalothertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoalsbatotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoalsbbtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoalsbctotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoalsbhvctotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcecoaltotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcenatgaslngtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcenatgaslpgtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">860837.83923352</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcenatgasngtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcenatgasothertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcenatgaspropanetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcenatgastotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">860837.83923352</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcefueloilfivetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcefueloilfourtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcefueloilonetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcefueloilothertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcefueloilsixtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcefueloiltwototal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcefueloiltotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomassbegtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomassbiodieseltotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasscanetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasscashewtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasscorncobtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasscornstalktotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomassefbtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasseucatotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomassothertotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">5066921.32062</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasspalmfibertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasspalmleaftotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasspalmshelltotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasspalmtrunktotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomassparawoodtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasspeanutshellstotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomassricehuskstotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomassricestrawtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasssawdusttotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasssliverwoodtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasstapiocatotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasswoodtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcebiomasstotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">5066921.32062</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"ensourcetotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">25337187.759853523</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhmaterialstotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">419418</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhmetaltotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">9338</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhplastictotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">18547</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhpapertotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">36939.6</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhcanstotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhfoodtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">51152.6</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhglasstotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhcartonstotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">17416.5</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhothertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcenhtotaldomtotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehprodchemdrumtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">596.7</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehprodfilmprinttotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehprodsludgetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehprodchemtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">39.3</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehprodcompgastotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehprodcontammattotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.6</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehdombatteriestotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">4.3</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehdomflolighttotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">35.5</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehdominkcarttotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehdomoilgreasetotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehdomemptyconttotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehdomelectronictotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">3.3</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehdomcoalcombtotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">2089.3</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcehothertotal"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"wstsourcetotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">555673.7000000001</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+</span></code></pre>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
