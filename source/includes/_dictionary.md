@@ -25,6 +25,9 @@ users | Semi-colon delimited list of account users for this account |  STRING
 posted | Indicates posted status of this module | BOOLEAN
 verified | Indicates if this is an FEM or vFEM | BOOLEAN
 related_rfi_answer | If verified == true, indicates the self-assessment ID that created this verified assessment |  STRING
+scores | if 'scores' is in includes, a new scores key will be returned. See 'Scores' for more information
+ghg | if 'ghg' is in includes, a new 'ghg' key will be returned. See 'GHG' for more information
+usage | if 'usage' is in includes, a new 'usage' key will be returened. See 'Resource Usage' for more information
 sitecountry | Facility country from the Facility profile |  STRING
 sipindustrysector | Sector this facility operates in ex: ‘Footwear’ | STRING
 sipfacilitytype | Type of facility. Ex: ‘Printing or Dyeing’ |  STRING

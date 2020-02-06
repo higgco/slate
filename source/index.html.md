@@ -12,6 +12,9 @@ toc_footers:
 includes:
   - errors
   - dictionary
+  - scores
+  - ghg
+  - usage
 
 search: true
 ---
@@ -83,7 +86,7 @@ You must replace <code>{{provided jwt api key}</code> with your provided API key
 
 ```shell
 curl -X GET \
-  https://api.production.higg.org/api/femcsv/5a30063250e33d1712372b7fa99_example \
+  https://api-v2.production.higg.org/api/femcsv/5a30063250e33d1712372b7fa99_example \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \
   -H 'higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg'
@@ -113,7 +116,7 @@ This endpoint retrieves all FEM module data as a CSV stream.
 
 ### HTTP Request
 
-`GET https://api.production.higg.org/api/femcsv/5a30063250e33d1712372b7fa99_example`
+`GET https://api-v2.production.higg.org/api/femcsv/5a30063250e33d1712372b7fa99_example`
 
 <aside class="success">
 Remember to send the correct authentication header!
@@ -123,7 +126,7 @@ Remember to send the correct authentication header!
 
 ```shell
 curl -X GET \
-  https://api.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example \
+  https://api-v2.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \
   -H 'higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg'
@@ -133,7 +136,7 @@ curl -X GET \
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://api.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example',
+  url: 'https://api-v2.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example',
   headers: 
      'cache-control': 'no-cache',
      'Content-Type': 'application/json',
@@ -153,7 +156,7 @@ This endpoint retrieves all FSLM module data as a CSV stream.
 
 ### HTTP Request
 
-`GET https://api.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example`
+`GET https://api-v2.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example`
 
 <aside class="success">
 Remember to send the correct authentication header!
@@ -179,7 +182,7 @@ size | query | - | Integer value of how many results to return. If not specified
 modules | query | - | Specify an array of specific module ID's (long Higg ID) to retrieve. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID's that do not come from the specified Account ID's.
 assessmentIds | query | - | Specify an array of specific account ID's to retrieve modules from. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID's that do not come from the specified Account ID's.
 accountIds | query | - | An array of account ID's (long Higg ID) to query modules for
-include | filter | - | Specify an array of which indicators to retrieve. If not specified, ALL module data is returned. This can be VERY large. Indicator names are same as in bulk CSV. See Data Dictionary for more information. 'scores', 'ghg', and 'usage' keywords enable the relevant data to be retrieved for each assessment. 
+include | filter | - | Specify an array of which indicators to retrieve. If not specified, ALL module data is returned. This can be VERY large. Indicator names are same as in bulk CSV and prefixed by 'questions.'. See example below and Data Dictionary for more information. 'scores', 'ghg', and 'usage' keywords enable the relevant data to be retrieved for each assessment. 
 status | filter | - | An array of status to filter modules for
 verified | filter | - | Filter for verified or unverified modules
 
@@ -191,9 +194,9 @@ curl -X POST \
   -H 'higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg' \
   -d '{
     "include": [
-        "sitecountry",
-        "sipfacilitytypetrim",
-        "table-ensourcenatgastracktable",
+        "questions.sitecountry",
+        "questions.sipfacilitytypetrim",
+        "questions.table-ensourcenatgastracktable",
         "scores"
     ],
     "assessmentIds": ["ASSESSMENT_ID_1","ASSESSMENT_ID_2"],
@@ -217,9 +220,9 @@ var options = { method: 'POST',
   body: 
    {
     "include": [
-        "sitecountry",
-        "sipfacilitytypetrim",
-        "table-ensourcenatgastracktable",
+        "questions.sitecountry",
+        "questions.sipfacilitytypetrim",
+        "questions.table-ensourcenatgastracktable",
         "scores"
     ],
     "assessmentIds": ["ASSESSMENT_ID_1","ASSESSMENT_ID_2"],
@@ -779,7 +782,7 @@ size | query | - | Integer value of how many results to return. If not specified
 modules | query | - | Specify an array of specific module ID's (long Higg ID) to retrieve. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID's that do not come from the specified Account ID's.
 assessmentIds | query | - | Specify an array of specific account ID's to retrieve modules from. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID's that do not come from the specified Account ID's.
 accountIds | query | - | An array of account ID's (long Higg ID) to query modules for
-include | filter | - | Specify an array of which indicators to retrieve. If not specified, ALL data is returned. This can be VERY large. Indicator names are same as in bulk CSV. See Data Dictionary for more information.
+include | filter | - | Specify an array of which indicators to retrieve. If not specified, ALL data is returned. This can be VERY large. Indicator names are same as in bulk CSV and prefixed by 'questions.'  See Data Dictionary for more information.
 status | filter | - | An array of status to filter modules for
 verified | filter | - | Filter for verified or unverified modules
 
@@ -791,9 +794,9 @@ curl -X POST \
   -H 'higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg' \
   -d '{
     "include": [
-        "FP-BI-3",
-        "FP-BS-10",
-        "FP-BS-4",
+        "questions.FP-BI-3",
+        "questions.FP-BS-10",
+        "questions.FP-BS-4",
         "scores"
     ],
     "assessmentIds": ["ASSESSMENT_ID_1","ASSESSMENT_ID_2"],
@@ -817,9 +820,9 @@ var options = { method: 'POST',
   body: 
    {
     "include": [
-        "FP-BI-3",
-        "FP-BS-10",
-        "FP-BS-4",
+        "questions.FP-BI-3",
+        "questions.FP-BS-10",
+        "questions.FP-BS-4",
         "scores"
     ],
     "assessmentIds": ["ASSESSMENT_ID_1","ASSESSMENT_ID_2"],
