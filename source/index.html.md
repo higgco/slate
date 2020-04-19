@@ -1,5 +1,5 @@
 ---
-title: Higg Public API Beta Reference
+title: Higg Public API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
@@ -21,7 +21,7 @@ search: true
 
 # Introduction
 
-Welcome to the Higg Public API Beta! You can use our API to access Higg Public API endpoints, which allows you to access module data that your account owns or that has been shared with your account.
+Welcome to the Higg Public API! You can use our API to access Higg Public API endpoints, which allows you to access module data that your account owns or that has been shared with your account.
 
 We have language bindings in Shell (curl) and JavaScript. You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
@@ -29,11 +29,13 @@ There are currently 2 available APIs and one API in planning
 
 # Available APIs
 
-## Bulk CSV API - PENDING REVISIONS - OFFLINE
+## Bulk CSV API
 
 The Bulk CSV API allows you to programmatically retrieve all module data that you own and that has been shared with you. The output is a CSV data stream that exactly matches what is available in the web portal for bulk download. The intent of the Bulk CSV API is not real-time interactions, it is for full data export/import use cases. Since this request can be 10's or 100's of megabytes in size, it is not useful for realtime interactions. 
 
 This API uses cached data that is updates daily and is very performant, it just delivers very large datasets.
+
+Currently this API returns -all- modules shared or owned with by the account. Future enhancements will including a filtering mechanism.
 
 ## Module Data API
 
@@ -60,12 +62,12 @@ The Adoption Data API is still in planning but conceptually will consist of GET 
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg"
+  -H "higg-api-token: USE YOUR ASSIGNED API TOKEN HERE"
 ```
 
 ```javascript
 # With XHR, you can just pass the correct header with each request. The same construct is true for a nodejs request object.
-xhr.setRequestHeader("higg-api-token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg");
+xhr.setRequestHeader("higg-api-token", "USE YOUR ASSIGNED API TOKEN HERE");
 ```
 
 > Make sure to replace the JWT token with your provided API key.
@@ -77,30 +79,29 @@ The Higg Public API  expects for the API key to be included in all API requests 
 `higg-api-token: {{provided jwt api key}}`
 
 <aside class="notice">
-You must replace <code>{{provided jwt api key}</code> with your provided API key.
+You must replace <code>USE YOUR ASSIGNED API TOKEN HERE</code> with your provided API key.
 </aside>
 
-# Bulk CSV API - OFFLINE
-
+# Bulk CSV API
 ## Get All FEM module data
 
 ```shell
 curl -X GET \
-  https://api-v2.production.higg.org/api/femcsv/5a30063250e33d1712372b7fa99_example \
+  https://api-v2.production.higg.org/api/modulecsv/fem \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \
-  -H 'higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg'
+  -H 'higg-api-token: USE YOUR ASSIGNED API TOKEN HERE'
 ```
 
 ```javascript
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://api.production.higg.org/api/femcsv/5a30063250e33d1712372b7fa99_example',
+  url: 'https://api.production.higg.org/api/modulecsv/fem',
   headers: 
      'cache-control': 'no-cache',
      'Content-Type': 'application/json',
-     'higg-api-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg' },
+     'higg-api-token': 'USE YOUR ASSIGNED API TOKEN HERE' },
   json: true };
 
 request(options, function (error, response, body) {
@@ -116,7 +117,7 @@ This endpoint retrieves all FEM module data as a CSV stream.
 
 ### HTTP Request
 
-`GET https://api-v2.production.higg.org/api/femcsv/5a30063250e33d1712372b7fa99_example`
+`GET https://api-v2.production.higg.org/api/modulecsv/fem`
 
 <aside class="success">
 Remember to send the correct authentication header!
@@ -126,21 +127,21 @@ Remember to send the correct authentication header!
 
 ```shell
 curl -X GET \
-  https://api-v2.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example \
+  https://api-v2.production.higg.org/api/modulecsv/fslm \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \
-  -H 'higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg'
+  -H 'higg-api-token: USE YOUR ASSIGNED API TOKEN HERE'
 ```
 
 ```javascript
 var request = require("request");
 
 var options = { method: 'GET',
-  url: 'https://api-v2.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example',
+  url: 'https://api-v2.production.higg.org/api/modulecsv/fslm',
   headers: 
      'cache-control': 'no-cache',
      'Content-Type': 'application/json',
-     'higg-api-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg' },
+     'higg-api-token': 'USE YOUR ASSIGNED API TOKEN HERE' },
   json: true };
 
 request(options, function (error, response, body) {
@@ -154,9 +155,11 @@ request(options, function (error, response, body) {
 
 This endpoint retrieves all FSLM module data as a CSV stream.
 
+Currently filters are not supported, ALL CSV data is returned on each request.
+
 ### HTTP Request
 
-`GET https://api-v2.production.higg.org/api/fslmcsv/5a30063250e33d1712372b7fa99_example`
+`GET https://api-v2.production.higg.org/api/modulecsv/fslm`
 
 <aside class="success">
 Remember to send the correct authentication header!
@@ -189,9 +192,9 @@ verified | filter | - | Filter for verified or unverified modules
 
 ```shell
 curl -X POST \
-  https://v2-api.production.higg.org/api/moduledata/fem \
+  https://api-v2.production.higg.org/api/moduledata/fem \
   -H 'Content-Type: application/json' \
-  -H 'higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg' \
+  -H 'higg-api-token: USE YOUR ASSIGNED API TOKEN HERE' \
   -d '{
     "include": [
         "questions.sitecountry",
@@ -213,10 +216,10 @@ curl -X POST \
 var request = require("request");
 
 var options = { method: 'POST',
-  url: 'https://v2-api.production.higg.org/api/moduledata/fem',
+  url: 'https://api-v2.production.higg.org/api/moduledata/fem',
   headers: 
    { 'Content-Type': 'application/json',
-   'higg-api-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg' },
+   'higg-api-token': 'USE YOUR ASSIGNED API TOKEN HERE' },
   body: 
    {
     "include": [
@@ -248,7 +251,7 @@ The Module Data API allows for retrieval of all assessment types (FEM, FSLM, BRM
 
 ### HTTP Request
 
-`https://v2-api.production.higg.org/api/moduledata/fem`
+`https://api-v2.production.higg.org/api/moduledata/fem`
 
 See examples for JSON argument usage
 
@@ -789,9 +792,9 @@ verified | filter | - | Filter for verified or unverified modules
 
 ```shell
 curl -X POST \
-  https://v2-api.production.higg.org/api/moduledata/fslm \
+  https://api-v2.production.higg.org/api/moduledata/fslm \
   -H 'Content-Type: application/json' \
-  -H 'higg-api-token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg' \
+  -H 'higg-api-token: USE YOUR ASSIGNED API TOKEN HERE' \
   -d '{
     "include": [
         "questions.FP-BI-3",
@@ -813,10 +816,10 @@ curl -X POST \
 var request = require("request");
 
 var options = { method: 'POST',
-  url: 'https://v2-api.production.higg.org/api/moduledata/fslm',
+  url: 'https://api-v2.production.higg.org/api/moduledata/fslm',
   headers: 
    { 'Content-Type': 'application/json',
-   'higg-api-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJIaWdnLmNvbSIsImlhdCI6MTU3MDQxNzQ0MCwiZXhwIjoxNjAxOTUzNDQwLCJhdWQiOiJ3d3cuaGlnZy5vcmciLCJzdWIiOiJIaWdnLm9yZyIsIm5hbWUiOiJOYW1lIGZvciBrZXkgZm9yIHVzZXIgcmVmZXJlbmNlIiwiaWQiOiI1NjZhMzEyMC1lM2IwLTExZTktYmJjNC0yN2RmNjQ1MWJmMTAiLCJhY2NvdW50aWQiOiI1YTMwMDYzMjUwZTMzZDE3MTIzNzJiN2ZhOTlfZXhhbXBsZSJ9.K2xraHp4NTTGg5P8lJSmVx9oSF9JIscD9Wdp28nWXfg' },
+   'higg-api-token': 'USE YOUR ASSIGNED API TOKEN HERE' },
   body: 
    {
     "include": [
@@ -846,7 +849,7 @@ request(options, function (error, response, body) {
 
 ### HTTP Request
 
-`https://v2-api.production.higg.org/api/moduledata/fsm`
+`https://api-v2.production.higg.org/api/moduledata/fsm`
 
 See examples for JSON argument usage
 
