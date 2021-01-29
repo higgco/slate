@@ -50,10 +50,6 @@ At its core it is a query API with various optional and required parameters. For
 
 Indicators are specified using the same column heading names as the bulk CSV. You can review the most commonly used attributes by viewing the data dictionary in the left navigation. Any deeper requirements should involve a Higg expert user who can help navigate those requirements to make sure you are retrieving the correct indicators.
 
-## Adoption Data API
-
-The Adoption Data API is still in planning but conceptually will consist of GET calls that allow you to retrieve adoption related data for your account, callback registrations that allow Higg systems to contact discrete endpoints when defined events occur, and PUT/POST calls that allow you to update your owned modules, shared modules, and shared account data with custom metadata relevant and specific to your account.
-
 # Authentication
 
 > To authorize, use this code:
@@ -919,6 +915,3 @@ Remember to send the correct authentication header!
 Remember to send arguments as JSON!
 </aside>
 
-# Adoption Data API
-
-Pending final implementation
