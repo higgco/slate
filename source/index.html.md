@@ -15,6 +15,7 @@ includes:
   - scores
   - ghg
   - usage
+  - verificationDetails
 
 search: true
 ---
@@ -915,3 +916,122 @@ Remember to send the correct authentication header!
 Remember to send arguments as JSON!
 </aside>
 
+## Get BRM Module Data
+
+Attribute | Argument Type | Required | Usage
+-------------- | -------------- | -------------- | --------------
+version | query | - | Specify which module category of data to retrieve (brm2019, brm2020)
+from | query | - | Integer value of where to start the window of results. If not specified, defaults to 0.
+size | query | - | Integer value of how many results to return. If not specified, defaults to 10.
+modules | query | - | Specify an array of specific module ID's (long Higg ID) to retrieve. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID's that do not come from the specified Account ID's.
+assessmentIds | query | - | Specify an array of specific account ID's to retrieve modules from. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID's that do not come from the specified Account ID's.
+accountIds | query | - | An array of account ID's (long Higg ID) to query modules for
+include | filter | - | Specify an array of which indicators to retrieve. If not specified, ALL data is returned. This can be VERY large. Indicator names are same as in bulk CSV and prefixed by 'questions.'  See Data Dictionary for more information.
+status | filter | - | An array of status to filter modules for
+verified | filter | - | Filter for verified or unverified modules
+
+
+```shell
+curl -X POST \
+  https://api-v2.production.higg.org/api/moduledata/brm \
+  -H 'Content-Type: application/json' \
+  -H 'higg-api-token: USE YOUR ASSIGNED API TOKEN HERE' \
+  -d '{
+    "include": [
+        "verificationDetails",
+    ],
+    "assessmentIds": ["ASSESSMENT_ID_1","ASSESSMENT_ID_2"],
+    "accountIds":["ACCCOUNT_ID_1","ACCCOUNT_ID_2"],
+    "version": "brm2020",
+    "verified": true,
+    "status": ["ASC","VRF"],
+    "from": 0,
+	"size": 10
+}'
+```
+
+```javascript
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://api-v2.production.higg.org/api/moduledata/brm',
+  headers: 
+   { 'Content-Type': 'application/json',
+   'higg-api-token': 'USE YOUR ASSIGNED API TOKEN HERE' },
+  body: 
+   {
+    "include": [
+        "verificationDetails"
+    ],
+    "assessmentIds": ["ASSESSMENT_ID_1","ASSESSMENT_ID_2"],
+    "accountIds":["ACCCOUNT_ID_1","ACCCOUNT_ID_2"],
+    "version": "brm2020",
+    "verified": true,
+    "status": ["ASC","VRF"],
+    "from": 0,
+	"size": 10
+};
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+
+```
+
+> The above command returns the following JSON data. 
+
+### HTTP Request
+
+`https://api-v2.production.higg.org/api/moduledata/brm`
+
+See examples for JSON argument usage
+
+The result set is in the following format:
+
+```json
+{
+    "from": 0,
+    "size": 1,
+    "total": 36,
+    "assessments": [
+        {
+            "id": "REDACTED",
+            "statusHistory": {
+                "ASI": "",
+                "ASC": "",
+                "VRP": "",
+                "VRC": "2020/03/05",
+                "VRF": "2020/03/05",
+                "VRD": "",
+                "VRI": "",
+                "ASD": ""
+            },
+            "status": "VRF",
+            "version": "brm2020",
+            "accountId": "REDACTED",
+            "accountName": "REDACTED",
+            "sacId": "REDACTED",
+            "country": "Sri Lanka",
+            "selfPosted": true,
+            "verifiedPosted": true,
+            "verified": true,
+            "verificationDetails": {
+                "verificationlevel": "level",
+                "verificationstartdate": "2020/03/05",
+                "verificationenddate": "2020/03/05",
+                "verificationlimitations": "Limitations",
+                "verificationteam": "team",
+                "verificationcomments": "additional comments"
+            }
+        }
+    ]
+}
+```
+<aside class="success">
+Remember to send the correct authentication header!
+</aside>
+<aside class="success">
+Remember to send arguments as JSON!
+</aside>

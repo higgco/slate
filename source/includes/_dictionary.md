@@ -16,7 +16,7 @@ Once the FSLM Scoring Pilot is complete, this data dictionary will be enhanced t
 Field | Notes | Type
 ---------- | ------- | -------
 surveyid | Unique ID for this module line |  STRING
-version | Version of survey (ex: fem2018, fem2017) || STRING
+version | Version of survey (ex: fem2017, fem2018, fem2019, fem2020, fslm, brm2019, brm2020) | STRING
 groupid | Account ID of module owner | | STRING
 groupname | Account name of module owner |  STRING
 SAC_Id | Higg ID of module owner |  STRING
@@ -80,7 +80,7 @@ chemicals.level3 | Level 3 score in Chemicals | FLOAT
 *wastewater.applicability | Selected applicability path for Wastewater| STRING
 *waste.applicability | Selected applicability path for Waste| STRING
 *chemicals.applicability | Selected applicability path for Chemicals| STRING
-
+verificationDetails | if 'verificationDetails' is in includes the whole verification details will be reutrned. See 'Verification Details' for more informations | STRING
 ## Applicabilities
 
 To be updated soon.
