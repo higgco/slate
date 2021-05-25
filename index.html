@@ -231,9 +231,6 @@
                   <li>
                     <a href="#module-data-api" class="toc-h2 toc-link" data-title="Module Data API">Module Data API</a>
                   </li>
-                  <li>
-                    <a href="#adoption-data-api" class="toc-h2 toc-link" data-title="Adoption Data API">Adoption Data API</a>
-                  </li>
               </ul>
           </li>
           <li>
@@ -259,10 +256,10 @@
                   <li>
                     <a href="#get-fslm-module-data" class="toc-h2 toc-link" data-title="Get FSLM Module Data">Get FSLM Module Data</a>
                   </li>
+                  <li>
+                    <a href="#get-brm-module-data" class="toc-h2 toc-link" data-title="Get BRM Module Data">Get BRM Module Data</a>
+                  </li>
               </ul>
-          </li>
-          <li>
-            <a href="#adoption-data-api-2" class="toc-h1 toc-link" data-title="Adoption Data API">Adoption Data API</a>
           </li>
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
@@ -286,6 +283,9 @@
           </li>
           <li>
             <a href="#resource-usage" class="toc-h1 toc-link" data-title="Resource Usage">Resource Usage</a>
+          </li>
+          <li>
+            <a href="#verification-details" class="toc-h1 toc-link" data-title="Verification Details">Verification Details</a>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -321,8 +321,6 @@
 </ul>
 
 <p>Indicators are specified using the same column heading names as the bulk CSV. You can review the most commonly used attributes by viewing the data dictionary in the left navigation. Any deeper requirements should involve a Higg expert user who can help navigate those requirements to make sure you are retrieving the correct indicators.</p>
-<h2 id='adoption-data-api'>Adoption Data API</h2>
-<p>The Adoption Data API is still in planning but conceptually will consist of GET calls that allow you to retrieve adoption related data for your account, callback registrations that allow Higg systems to contact discrete endpoints when defined events occur, and PUT/POST calls that allow you to update your owned modules, shared modules, and shared account data with custom metadata relevant and specific to your account.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
@@ -1248,8 +1246,168 @@ Remember to send the correct authentication header!
 <aside class="success">
 Remember to send arguments as JSON!
 </aside>
-<h1 id='adoption-data-api-2'>Adoption Data API</h1>
-<p>Pending final implementation</p>
+<h2 id='get-brm-module-data'>Get BRM Module Data</h2>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Argument Type</th>
+<th>Required</th>
+<th>Usage</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>version</td>
+<td>query</td>
+<td>-</td>
+<td>Specify which module category of data to retrieve (brm2019, brm2020)</td>
+</tr>
+<tr>
+<td>from</td>
+<td>query</td>
+<td>-</td>
+<td>Integer value of where to start the window of results. If not specified, defaults to 0.</td>
+</tr>
+<tr>
+<td>size</td>
+<td>query</td>
+<td>-</td>
+<td>Integer value of how many results to return. If not specified, defaults to 10.</td>
+</tr>
+<tr>
+<td>modules</td>
+<td>query</td>
+<td>-</td>
+<td>Specify an array of specific module ID&#39;s (long Higg ID) to retrieve. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID&#39;s that do not come from the specified Account ID&#39;s.</td>
+</tr>
+<tr>
+<td>assessmentIds</td>
+<td>query</td>
+<td>-</td>
+<td>Specify an array of specific account ID&#39;s to retrieve modules from. If not specified, retrieves all modules of specified rfi_pid (subject to other query specifiers). Note that this can have unintuitive side-effects if you specify Module ID&#39;s that do not come from the specified Account ID&#39;s.</td>
+</tr>
+<tr>
+<td>accountIds</td>
+<td>query</td>
+<td>-</td>
+<td>An array of account ID&#39;s (long Higg ID) to query modules for</td>
+</tr>
+<tr>
+<td>include</td>
+<td>filter</td>
+<td>-</td>
+<td>Specify an array of which indicators to retrieve. If not specified, ALL data is returned. This can be VERY large. Indicator names are same as in bulk CSV and prefixed by &#39;questions.&#39;  See Data Dictionary for more information.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>filter</td>
+<td>-</td>
+<td>An array of status to filter modules for</td>
+</tr>
+<tr>
+<td>verified</td>
+<td>filter</td>
+<td>-</td>
+<td>Filter for verified or unverified modules</td>
+</tr>
+</tbody></table>
+<pre class="highlight shell tab-shell"><code>curl -X POST <span class="se">\</span>
+  https://api-v2.production.higg.org/api/moduledata/brm <span class="se">\</span>
+  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+  -H <span class="s1">'higg-api-token: USE YOUR ASSIGNED API TOKEN HERE'</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "include": [
+        "verificationDetails",
+    ],
+    "assessmentIds": ["ASSESSMENT_ID_1","ASSESSMENT_ID_2"],
+    "accountIds":["ACCCOUNT_ID_1","ACCCOUNT_ID_2"],
+    "version": "brm2020",
+    "verified": true,
+    "status": ["ASC","VRF"],
+    "from": 0,
+    "size": 10
+}'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"request"</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span> <span class="na">method</span><span class="p">:</span> <span class="s1">'POST'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s1">'https://api-v2.production.higg.org/api/moduledata/brm'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> 
+   <span class="p">{</span> <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span><span class="p">,</span>
+   <span class="s1">'higg-api-token'</span><span class="p">:</span> <span class="s1">'USE YOUR ASSIGNED API TOKEN HERE'</span> <span class="p">},</span>
+  <span class="na">body</span><span class="p">:</span> 
+   <span class="p">{</span>
+    <span class="s2">"include"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s2">"verificationDetails"</span>
+    <span class="p">],</span>
+    <span class="s2">"assessmentIds"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"ASSESSMENT_ID_1"</span><span class="p">,</span><span class="s2">"ASSESSMENT_ID_2"</span><span class="p">],</span>
+    <span class="s2">"accountIds"</span><span class="p">:[</span><span class="s2">"ACCCOUNT_ID_1"</span><span class="p">,</span><span class="s2">"ACCCOUNT_ID_2"</span><span class="p">],</span>
+    <span class="s2">"version"</span><span class="p">:</span> <span class="s2">"brm2020"</span><span class="p">,</span>
+    <span class="s2">"verified"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="s2">"status"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"ASC"</span><span class="p">,</span><span class="s2">"VRF"</span><span class="p">],</span>
+    <span class="s2">"from"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">"size"</span><span class="p">:</span> <span class="mi">10</span>
+<span class="p">};</span>
+
+<span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre>
+<blockquote>
+<p>The above command returns the following JSON data. </p>
+</blockquote>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>https://api-v2.production.higg.org/api/moduledata/brm</code></p>
+
+<p>See examples for JSON argument usage</p>
+
+<p>The result set is in the following format:</p>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"assessments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REDACTED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"statusHistory"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"ASI"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ASC"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"VRP"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"VRC"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020/03/05"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"VRF"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020/03/05"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"VRD"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"VRI"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ASD"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VRF"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"brm2020"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REDACTED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accountName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REDACTED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sacId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REDACTED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sri Lanka"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"selfPosted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"verifiedPosted"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"verificationDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"verificationlevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"level"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"verificationstartdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020/03/05"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"verificationenddate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020/03/05"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"verificationlimitations"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Limitations"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"verificationteam"</span><span class="p">:</span><span class="w"> </span><span class="s2">"team"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"verificationcomments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"additional comments"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<aside class="success">
+Remember to send the correct authentication header!
+</aside>
+
+<aside class="success">
+Remember to send arguments as JSON!
+</aside>
 <h1 id='errors'>Errors</h1>
 <p>The Higg Public API uses the following error codes:</p>
 
@@ -1321,8 +1479,8 @@ Remember to send arguments as JSON!
 </tr>
 <tr>
 <td>version</td>
-<td>Version of survey (ex: fem2018, fem2017)</td>
-<td></td>
+<td>Version of survey (ex: fem2017, fem2018, fem2019, fem2020, fslm, brm2019, brm2020)</td>
+<td>STRING</td>
 </tr>
 <tr>
 <td>groupid</td>
@@ -1637,6 +1795,11 @@ Remember to send arguments as JSON!
 <tr>
 <td>*chemicals.applicability</td>
 <td>Selected applicability path for Chemicals</td>
+<td>STRING</td>
+</tr>
+<tr>
+<td>verificationDetails</td>
+<td>if &#39;verificationDetails&#39; is in includes the whole verification details will be reutrned. See &#39;Verification Details&#39; for more informations</td>
 <td>STRING</td>
 </tr>
 </tbody></table>
@@ -2833,6 +2996,24 @@ Remember to send arguments as JSON!
                     </span><span class="s2">"wstsourcetotal"</span><span class="p">:</span><span class="w"> </span><span class="mf">555673.7000000001</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='verification-details'>Verification Details</h1>
+<p>You may include the &#39;verificationDetails&#39; key in the include array. When this is requested, the &#39;verificationDetails&#39; key will be populated in the results. </p>
+
+<p>The format of this result contains whole verification details data. </p>
+
+<p>If no verification details data is available, the verification details will not be populated.</p>
+
+<p>In this moment we have verification data just for version &#39;brm2020&#39;.</p>
+
+<p>Format:</p>
+<pre class="highlight json tab-json"><code><span class="s2">"verificationDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"verificationlevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"level"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verificationstartdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020/03/05"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verificationenddate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020/03/05"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verificationlimitations"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Limitations"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verificationteam"</span><span class="p">:</span><span class="w"> </span><span class="s2">"team"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verificationcomments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"additional comments"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
       </div>
       <div class="dark-box">
