@@ -13,11 +13,10 @@ Format:
 
 ```json
 "verificationDetails": {
-    "verificationlevel": "level",
+    "verificationtype": "type",
+    "verificationcost": 0,
     "verificationstartdate": "2020/03/05",
     "verificationenddate": "2020/03/05",
-    "verificationlimitations": "Limitations",
-    "verificationteam": "team",
-    "verificationcomments": "additional comments"
+    "veificationpersondays": 1,
 }
 ```
